@@ -1,0 +1,27 @@
+{
+  "name": "algorithms_js",
+  "version": "1.0.0",
+  "description": "Practice in algorithms using JS",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/navdeyev/algorithms_js.git"
+  },
+  "author": "navdeyev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/navdeyev/algorithms_js/issues"
+  },
+  "homepage": "https://github.com/navdeyev/algorithms_js#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-jest": "^22.4.1",
+    "babel-preset-env": "^1.6.1",
+    "jest": "^22.4.2",
+    "regenerator-runtime": "^0.11.1"
+  }
+}
