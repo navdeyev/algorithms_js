@@ -1,4 +1,4 @@
-describe('demonstrates the prototype behaviour', () => {
+describe('demonstrates the prototype behaviour with objects', () => {
 
     let food;
     beforeEach(() => {
@@ -13,13 +13,30 @@ describe('demonstrates the prototype behaviour', () => {
         };
     });
 
-    it(`uses the eat() method defined in the prototype`, () => {
+    it(`uses the eat() method defined in the prototype for the object created with Object.create()`, () => {
         //Object.create() creates a new object and sets the passed down object as prototype
         const cookie = Object.create(food).init('cookie');
         expect(food.isPrototypeOf(cookie)).toBe(true);
         expect(cookie.__proto__).toBe(food);
 
-        //Since cookie object does not have it's own eat() method it calls the method of the prototype
+        //Cookie object does not have a eat method defined on it
+        expect(cookie.hasOwnProperty('eat')).toBe(false);
+
+        //But cookie delegates to eat() method defined in the prototype
+        expect(cookie.eat()).toBe('You ate the cookie');
+    });
+
+    it(`uses the eat() method defined in the prototype if the prototype was assigned with Object.setPrototypeOf()`, () => {
+        const cookie = {type: 'cookie'};
+        Object.setPrototypeOf(cookie, food);
+
+        expect(food.isPrototypeOf(cookie)).toBe(true);
+        expect(cookie.__proto__).toBe(food);
+
+        //Cookie object does not have a eat method defined on it
+        expect(cookie.hasOwnProperty('eat')).toBe(false);
+
+        //But cookie delegates to eat() method defined in the prototype
         expect(cookie.eat()).toBe('You ate the cookie');
     });
 
