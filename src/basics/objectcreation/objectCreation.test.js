@@ -38,6 +38,8 @@ describe('object creation with new and a regular constructor function', () => {
         }
 
         const cookie = construct(Food, 'cookie');
+        expect(Food.prototype.isPrototypeOf(cookie)).toBe(true);
+        expect(cookie.__proto__).toBe(Food.prototype);
         expect(cookie.eat()).toBe('You ate the cookie');
     });
 
@@ -57,7 +59,7 @@ describe('object creation with new and a constructor function that returns an ob
         return `You ate the ${ this.type }`;
     };
 
-    it('constructor function returns an object leads to confusion', () => {
+    it('constructor function returns an object and it leads to confusion', () => {
         const cookie = new Food('cookie');
         expect(cookie).toEqual({silly: true});
 
