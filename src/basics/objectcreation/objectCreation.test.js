@@ -85,3 +85,56 @@ describe('object creation with new and a constructor function that returns an ob
 
 });
 
+describe('object creation with classes demonstrating that it is only syntactic sugar on top of prototypes', () => {
+
+    class Food {
+        constructor(type) {
+            this.type = type;
+        }
+
+        eat() {
+            return `You ate the ${ this.type }`;
+        }
+    }
+
+    it('uses the eat() method defined in the prototype for the object created from a class', () => {
+        expect(typeof Food).toBe('function');
+
+        const cookie = new Food('cookie');
+        expect(Food.prototype.isPrototypeOf(cookie)).toBe(true);
+        expect(cookie.__proto__).toBe(Food.prototype);
+        expect(cookie.eat()).toBe('You ate the cookie');
+    });
+
+    it('demonstrates inheritance with classes', () => {
+        class Cookie extends Food {
+            constructor() {
+                super('cookie');
+            }
+        }
+
+        expect(typeof Cookie).toBe('function');
+
+        const cookie = new Cookie();
+        expect(Food.prototype.isPrototypeOf(cookie)).toBe(true);
+        //Cookie is derived from Food class, so there is a longer prototype chain
+        expect(cookie.__proto__.__proto__).toBe(Food.prototype);
+        expect(cookie.eat()).toBe('You ate the cookie');
+    });
+
+    it('demonstrates it is possible to use bind on the methods of a class', () => {
+        const boundFunction = Food.prototype.eat.bind({type: 'cookie'});
+        expect(boundFunction()).toBe('You ate the cookie');
+    });
+
+    it('demonstrates that the class properties are not private', () => {
+        const cookie = new Food('cookie');
+        expect(cookie.eat()).toBe('You ate the cookie');
+
+        //Nothing is preventing us from doing the following assignment
+        cookie.type = 'pie';
+        expect(cookie.eat()).toBe('You ate the pie');
+    });
+
+});
+
