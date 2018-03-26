@@ -3,7 +3,7 @@ const getRandomInt = (max) => {
     return Math.floor(Math.random() * Math.floor(max));
 };
 
-const capitalLookupService = (country) => {
+export const capitalLookupService = (country) => {
     const data = {
         'UK': 'London',
         'Germany': 'Berlin',
