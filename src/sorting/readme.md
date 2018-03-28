@@ -32,3 +32,13 @@ Worst case: O(n^2) if the pivot value is the minimum - left subset is empty, rig
 On average: somewhere between O(log(n)) and O(n) - O(n log(n))
 
 The algorithm provided here is a demonstration of the idea, it's not the most efficient implementation.
+
+**Merge sort**
+
+This algorithm works by splitting array to sub-arrays, sorting each individual part and merging them back together.
+This algorithm suits you best if the data doesn't fit into memory.
+
+Any sorting algorithm can be applied to sort each individual part.
+Common pattern is to use insertion sort to sort subsets below specified minimum size.
+
+The best, average, and worst-case running times for merge sort are all O(n log(n));
