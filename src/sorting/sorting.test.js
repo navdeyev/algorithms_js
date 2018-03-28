@@ -1,5 +1,6 @@
 import insertionSort from './insertionSort';
 import selectionSort from './selectionSort';
+import quickSort from './quickSort';
 
 describe('Different sorting algorithms', () => {
 
@@ -11,17 +12,20 @@ describe('Different sorting algorithms', () => {
 
     testCases.forEach((testCase) => {
         it(`selectionSort given ${testCase.input} returns ${testCase.output}`, () => {
-            const testCaseInputCopyForInPlaceAlgorithm = testCase.input.slice(0);
-            expect(selectionSort(testCaseInputCopyForInPlaceAlgorithm)).toEqual(testCase.output);
+            expect(selectionSort([...testCase.input])).toEqual(testCase.output);
         });
     });
 
     testCases.forEach((testCase) => {
         it(`insertionSort given ${testCase.input} returns ${testCase.output}`, () => {
-            const testCaseInputCopyForInPlaceAlgorithm = testCase.input.slice(0);
-            expect(insertionSort(testCaseInputCopyForInPlaceAlgorithm)).toEqual(testCase.output);
+            expect(insertionSort([...testCase.input])).toEqual(testCase.output);
         });
     });
 
+    testCases.forEach((testCase) => {
+        it(`quickSort given ${testCase.input} returns ${testCase.output}`, () => {
+            expect(quickSort([...testCase.input])).toEqual(testCase.output);
+        });
+    });
 
 });
