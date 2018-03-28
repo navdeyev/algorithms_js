@@ -1,6 +1,7 @@
 import insertionSort from './insertionSort';
 import selectionSort from './selectionSort';
 import quickSort from './quickSort';
+import mergeSort from './mergeSort';
 
 describe('Different sorting algorithms', () => {
 
@@ -25,6 +26,12 @@ describe('Different sorting algorithms', () => {
     testCases.forEach((testCase) => {
         it(`quickSort given ${testCase.input} returns ${testCase.output}`, () => {
             expect(quickSort([...testCase.input])).toEqual(testCase.output);
+        });
+    });
+
+    testCases.forEach((testCase) => {
+        it(`mergeSort given ${testCase.input} returns ${testCase.output}`, () => {
+            expect(mergeSort([...testCase.input])).toEqual(testCase.output);
         });
     });
 
