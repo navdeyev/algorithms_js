@@ -67,11 +67,39 @@ const rotateUsingReversal = (arr, by) => {
     return arr;
 };
 
+const gcd = (a, b) => {
+    if (b === 0)
+        return a;
+    else
+        return gcd(b, a % b);
+};
+const jugglingAlgorithm = (arr, by) => {
+    const commonDenominator = gcd(by, arr.length);
+
+    for (let i = 0; i < commonDenominator; i++) {
+        /* move i-th values of blocks */
+        let temp = arr[i];
+        let j = i;
+        while (true) {
+            let k = j + by;
+            if (k >= arr.length)
+                k = k - arr.length;
+            if (k === i)
+                break;
+            arr[j] = arr[k];
+            j = k;
+        }
+        arr[j] = temp;
+    }
+    return arr;
+};
+
 
 export default {
     rotateOneByOne,
     rotateUsingSliceBy,
     rotateUsingSpliceAndConcat,
     rotateUsingArrayIndexes,
-    rotateUsingReversal
+    rotateUsingReversal,
+    jugglingAlgorithm
 }
