@@ -12,34 +12,11 @@ describe('MaxStack has getMax() method that returns max element in that stack', 
     testCases.forEach((testCase) => {
         it(`given ${testCase.input} returns a max value ${testCase.output}`, () => {
             const maxStack = createMaxStack();
-
-            console.log(maxStack);
-
             testCase.input.forEach((el) => {
                 maxStack.push(el);
             });
             expect(maxStack.getMax()).toBe(testCase.output);
         });
     });
-
-    // testCases.forEach((testCase) => {
-    //     it(`given ${testCase.input} returns a max value ${testCase.output}`, () => {
-    //         const maxStack = impls.MaxStackFactory();
-    //         testCase.input.forEach((el) => {
-    //             maxStack.push(el);
-    //         });
-    //         expect(maxStack.getMax()).toBe(testCase.output);
-    //     });
-    // });
-    //
-    // testCases.forEach((testCase) => {
-    //     it(`given ${testCase.input} returns a max value ${testCase.output}`, () => {
-    //         const maxStack = new impls.MaxStackClass();
-    //         testCase.input.forEach((el) => {
-    //             maxStack.push(el);
-    //         });
-    //         expect(maxStack.getMax()).toBe(testCase.output);
-    //     });
-    // });
 
 });

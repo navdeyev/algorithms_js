@@ -23,6 +23,7 @@ const getMax = (stack) => {
 const createMaxStack = () => {
     const stack = createStack();
     stack.getMax = () => getMax(stack);
+    return stack;
 };
 
 export default createMaxStack;
