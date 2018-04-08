@@ -1,6 +1,8 @@
 import createStack from './stack';
 
 const getMax = (stack) => {
+    if (stack.isEmpty()) return null;
+
     const tempStack = createStack();
     let max = stack.peek();
 
@@ -12,7 +14,7 @@ const getMax = (stack) => {
         tempStack.push(el);
     }
 
-    while (tempStack.peek()) {
+    while (!tempStack.isEmpty()) {
         stack.push(tempStack.pop());
     }
 

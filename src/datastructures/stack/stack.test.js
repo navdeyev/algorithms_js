@@ -5,7 +5,7 @@ describe('stack', () => {
     it('validates state of an empty stack', () => {
         const stack = createStack();
 
-        expect(stack.peek()).toBe(null);
+        expect(stack.peek).toThrow('Peek called on an empty stack');
         expect(stack.isEmpty()).toBe(true);
         expect(stack.size()).toBe(0);
         expect(stack.printOut()).toBe('');
