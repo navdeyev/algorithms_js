@@ -12,6 +12,8 @@ describe('object creation with new and a regular constructor function', () => {
     it('uses the eat() method defined in the prototype for the object created with new keyword', () => {
         const cookie = new Food('cookie');
         expect(Food.prototype.isPrototypeOf(cookie)).toBe(true);
+        expect(typeof cookie).toBe('object');
+        expect(cookie instanceof Food).toBe(true);
         expect(cookie.__proto__).toBe(Food.prototype);
         expect(cookie.eat()).toBe('You ate the cookie');
     });
@@ -39,6 +41,8 @@ describe('object creation with new and a regular constructor function', () => {
 
         const cookie = construct(Food, 'cookie');
         expect(Food.prototype.isPrototypeOf(cookie)).toBe(true);
+        expect(typeof cookie).toBe('object');
+        expect(cookie instanceof Food).toBe(true);
         expect(cookie.__proto__).toBe(Food.prototype);
         expect(cookie.eat()).toBe('You ate the cookie');
     });
@@ -62,6 +66,10 @@ describe('object creation with new and a constructor function that returns an ob
     it('constructor function returns an object and it leads to confusion', () => {
         const cookie = new Food('cookie');
         expect(cookie).toEqual({silly: true});
+
+        expect(typeof cookie).toBe('object');
+        //Instance of check is no longer valid
+        expect(cookie instanceof Food).toBe(false);
 
         expect(Food.prototype.isPrototypeOf(cookie)).toBe(false);
         expect(cookie.__proto__).toEqual({});
@@ -102,6 +110,8 @@ describe('object creation with classes demonstrating that it is only syntactic s
 
         const cookie = new Food('cookie');
         expect(Food.prototype.isPrototypeOf(cookie)).toBe(true);
+        expect(typeof cookie).toBe('object');
+        expect(cookie instanceof Food).toBe(true);
         expect(cookie.__proto__).toBe(Food.prototype);
         expect(cookie.eat()).toBe('You ate the cookie');
     });
@@ -117,6 +127,10 @@ describe('object creation with classes demonstrating that it is only syntactic s
 
         const cookie = new Cookie();
         expect(Food.prototype.isPrototypeOf(cookie)).toBe(true);
+        expect(typeof cookie).toBe('object');
+        expect(cookie instanceof Food).toBe(true);
+        expect(cookie instanceof Cookie).toBe(true);
+
         //Cookie is derived from Food class, so there is a longer prototype chain
         expect(cookie.__proto__.__proto__).toBe(Food.prototype);
         expect(cookie.eat()).toBe('You ate the cookie');
