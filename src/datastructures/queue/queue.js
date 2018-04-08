@@ -1,25 +1,33 @@
-const createStack = () => {
+const createQueue = () => {
     let head = null;
 
-    const push = (value) => {
-        head = {value, next: head};
+    const enqueue = (value) => {
+        if (head === null) {
+            head = {value, next: null};
+        } else {
+            let node = head;
+            while (node.next) {
+                node = node.next;
+            }
+            node.next = {value, next: null};
+        }
     };
 
     const peek = () => {
-        //Throwing exception when called on an empty stack allows us to distinguish between
-        //null being an actual value added to the stack and returning null because nothing was yet added.
         if (head === null) {
-            throw new Error('Peek called on an empty stack');
+            throw new Error('Peek called on an empty queue');
         }
+
         return head.value;
     };
 
-    const pop = () => {
+    const dequeue = () => {
         if (head === null) {
-            throw new Error('Pop called on an empty stack');
+            throw new Error('Dequeue called on an empty queue');
         }
+
         const node = head;
-        head = head.next ? head.next : null;
+        head = head.next;
         return node.value;
     };
 
@@ -48,13 +56,14 @@ const createStack = () => {
     };
 
     return {
-        push,
-        pop,
+        enqueue,
+        dequeue,
         peek,
         isEmpty,
         size,
         printOut
     }
+
 };
 
-export default createStack;
+export default createQueue;
