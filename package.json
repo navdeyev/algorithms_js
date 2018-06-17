@@ -16,7 +16,9 @@
     "url": "https://github.com/navdeyev/algorithms_js/issues"
   },
   "homepage": "https://github.com/navdeyev/algorithms_js#readme",
-  "dependencies": {},
+  "dependencies": {
+    "ramda": "^0.25.0"
+  },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-jest": "^22.4.1",
