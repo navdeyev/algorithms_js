@@ -1,6 +1,6 @@
+import { add, multiply } from './common';
+
 describe('Arithmetic laws (knowledge of the ancients)', () => {
-    const add = (a, b) => a + b;
-    const multiply = (a, b) => a * b;
 
     const x = 1, y = 2, z = 3;
 

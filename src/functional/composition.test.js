@@ -1,6 +1,8 @@
 import {compose, curry, filter, flip, head, join, last, map, prop, reduce, replace, sortBy} from 'ramda';
 import accounting from 'accounting';
 
+import { add } from './common';
+
 const CARS = [
     {name: 'Ferrari FF', horsepower: 660, dollar_value: 700000, in_stock: true},
     {name: 'Spyker C12 Zagato', horsepower: 650, dollar_value: 648000, in_stock: false},
@@ -34,7 +36,6 @@ describe('Chapter 5: Compose exercise 2', () => {
 });
 
 describe('Chapter 5: Compose exercise 3', () => {
-    const add = (a, b) => a + b;
     const average = xs => reduce(add, 0, xs) / xs.length;
 
     const averageDollarValue = (cars) => {
@@ -80,7 +81,6 @@ describe('Chapter 5: Compose bonus exercise 1', () => {
 });
 
 describe('Chapter 5: Compose bonus exercise 2', () => {
-    const add = (a, b) => a + b;
 
     const fastestCar = cars => {
         const sorted = sortBy(car => car.horsepower, cars);
