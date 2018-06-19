@@ -1,4 +1,4 @@
-import { add, multiply } from './common';
+import {add, multiply} from './common';
 
 describe('Arithmetic laws (knowledge of the ancients)', () => {
 

@@ -1,7 +1,7 @@
 import {compose, curry, filter, flip, head, join, last, map, prop, reduce, replace, sortBy} from 'ramda';
 import accounting from 'accounting';
 
-import { add } from './common';
+import {add} from './common';
 
 const CARS = [
     {name: 'Ferrari FF', horsepower: 660, dollar_value: 700000, in_stock: true},

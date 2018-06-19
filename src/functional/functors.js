@@ -1,4 +1,4 @@
-import { compose, curry } from 'ramda';
+import {compose, curry} from 'ramda';
 
 export class Container {
     constructor(x) {
@@ -6,11 +6,11 @@ export class Container {
     }
 
     static of(x) {
-        return new Container( x );
+        return new Container(x);
     }
 
     map(fn) {
-        return Container.of( fn( this.$value ) );
+        return Container.of(fn(this.$value));
     }
 }
 
@@ -20,7 +20,7 @@ export class Maybe {
     }
 
     static of(x) {
-        return new Maybe( x );
+        return new Maybe(x);
     }
 
     isNothing() {
@@ -28,13 +28,13 @@ export class Maybe {
     };
 
     map(fn) {
-        return this.isNothing() ? this : Maybe.of( fn( this.$value ) );
+        return this.isNothing() ? this : Maybe.of(fn(this.$value));
     };
 }
 
 export class Either {
     static of(x) {
-        return new Right( x );
+        return new Right(x);
     }
 
     constructor(x) {
@@ -50,31 +50,31 @@ export class Left extends Either {
 
 export class Right extends Either {
     map(f) {
-        return Either.of( f( this.$value ) );
+        return Either.of(f(this.$value));
     }
 }
 
-export const left = x => new Left( x );
+export const left = x => new Left(x);
 
-export const either = curry( (f, g, e) => {
+export const either = curry((f, g, e) => {
     let result;
     switch (e.constructor) {
         case Left:
-            result = f( e.$value );
+            result = f(e.$value);
             break;
 
         case Right:
-            result = g( e.$value );
+            result = g(e.$value);
             break;
         // No Default
     }
 
     return result;
-} );
+});
 
 export class IO {
     static of(x) {
-        return new IO( () => x );
+        return new IO(() => x);
     }
 
     constructor(fn) {
@@ -82,6 +82,6 @@ export class IO {
     }
 
     map(fn) {
-        return new IO( compose( fn, this.$value ) );
+        return new IO(compose(fn, this.$value));
     }
 }
