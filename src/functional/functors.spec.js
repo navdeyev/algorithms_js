@@ -1,5 +1,8 @@
 import {compose, concat, curry, head, map, prop} from 'ramda';
-import {Container, Either, either, IO, left, Maybe} from './functors';
+import {Container} from './container';
+import {Either, either, left} from './either';
+import {IO} from './io';
+import {Maybe} from './maybe';
 import {add} from './common';
 
 describe('Chapter 8: Functor exercise 1', () => {
@@ -34,11 +37,7 @@ describe('Chapter 8: Functor exercise 2', () => {
 
 describe('Chapter 8: Functor exercise 3', () => {
     const showWelcome = compose(concat('Welcome '), prop('name'));
-    const checkActive = function checkActive(user) {
-        return user.active
-            ? Either.of(user)
-            : left('Your account is not active');
-    };
+    const checkActive = (user) => user.active ? Either.of(user) : left('Your account is not active');
 
     const eitherWelcome = compose(
         map(showWelcome),
@@ -62,11 +61,7 @@ describe('Chapter 8: Functor exercise 4', () => {
     const validateUser = curry((validate, user) => validate(user).map(_ => user));
     const save = user => new IO(() => ({...user, saved: true}));
 
-    const validateName = (user) => {
-        return user.name.length > 3
-            ? Either.of(null)
-            : left('Name too short')
-    };
+    const validateName = (user) => user.name.length > 3 ? Either.of(null) : left('Name too short');
 
     const saveAndWelcome = compose(
         map(showWelcome),
