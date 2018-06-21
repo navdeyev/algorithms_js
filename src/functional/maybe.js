@@ -18,4 +18,9 @@ export class Maybe {
     join() {
         return this.isNothing() ? Maybe.of(null) : this.$value;
     }
+
+    ap(f) {
+        return this.isNothing() ? this : f.map(this.$value);
+    }
+
 }

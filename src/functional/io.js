@@ -16,4 +16,13 @@ export class IO {
     join() {
         return this.$value();
     }
+
+    chain(fn) {
+        return this.map(fn).join();
+    }
+
+    ap(f) {
+        return this.chain(fn => f.map(fn));
+    }
+
 }
