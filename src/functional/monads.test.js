@@ -68,18 +68,18 @@ describe('Chapter 9: Monads exercise 3', () => {
         return list;
     });
     const addToMailingList = (addToList)([]);
-    const emailBlast = list => new IO(() => 'emailed: ' + list.join(','));
+    const emailBlast = list => new IO(() => 'emailed: ' + list.join(', '));
     const validateEmail = x => x.match(/\S+@\S+\.\S+/) ? new Right(x) : new Left('invalid email');
 
     it('Use validateEmail, addToMailingList, and emailBlast to implement ex4\'s type signature', () => {
         const joinMailingList = compose(
             join,
-            chain(emailBlast),
-            map(addToMailingList),
+            join,
+            map(compose(chain(emailBlast), addToMailingList)),
             validateEmail
         );
         expect(joinMailingList('some@email.com')).toEqual('emailed: some@email.com');
-        expect(joinMailingList('someOther@email.com')).toEqual('emailed: some@email.com,someOther@email.com');
+        expect(joinMailingList('someOther@email.com')).toEqual('emailed: some@email.com, someOther@email.com');
     });
 
 });
